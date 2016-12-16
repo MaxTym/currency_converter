@@ -19,18 +19,18 @@ def test_convert_to_same_currency_code():
 def test_convert_to_different_currency_code():
     curr1 = Currency(1.0, 'USD')
     curr2 = Currency(0.74, 'EUR')
-    curr3 = Currency(25.0, 'JPY')
+    curr3 = Currency(25.0, 'UAH')
     assert converter.convert(curr1, 'EUR') == curr2
-    assert converter.convert(curr1, 'JPY') == curr3
-    assert converter.convert(curr2, 'JPY') == curr3
+    assert converter.convert(curr1, 'UAH') == curr3
+    assert converter.convert(curr2, 'UAH') == curr3
     assert converter.convert(curr3, 'EUR') == curr2
 
 
 @raises(UnknownCurrencyCodeError)
 def test_convert_from_unknown_currency_code():
-    converter.convert(Currency(1.0, 'RUR'), 'USD')
+    converter.convert(Currency(1.0, 'CAN'), 'USD')
 
 
 @raises(UnknownCurrencyCodeError)
 def test_convert_to_unknown_currency_code():
-    converter.convert(Currency(1.0, 'USD'), 'RUR')
+    converter.convert(Currency(1.0, 'USD'), 'CAN')
